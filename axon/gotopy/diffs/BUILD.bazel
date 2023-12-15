@@ -1,0 +1,36 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "diffs_lib",
+    srcs = ["ra25.go"],
+    importpath = "github.com/emer/axon/python/gotopy/diffs",
+    visibility = ["//visibility:private"],
+    deps = [
+        "//axon",
+        "@com_github_emer_emergent//emer",
+        "@com_github_emer_emergent//env",
+        "@com_github_emer_emergent//netview",
+        "@com_github_emer_emergent//params",
+        "@com_github_emer_emergent//patgen",
+        "@com_github_emer_emergent//prjn",
+        "@com_github_emer_emergent//relpos",
+        "@com_github_emer_etable//agg",
+        "@com_github_emer_etable//eplot",
+        "@com_github_emer_etable//etable",
+        "@com_github_emer_etable//etensor",
+        "@com_github_emer_etable//etview",
+        "@com_github_emer_etable//split",
+        "@com_github_goki_gi//gi",
+        "@com_github_goki_gi//gimain",
+        "@com_github_goki_gi//giv",
+        "@com_github_goki_ki//ki",
+        "@com_github_goki_ki//kit",
+        "@com_github_goki_mat32//:mat32",
+    ],
+)
+
+go_binary(
+    name = "diffs",
+    embed = [":diffs_lib"],
+    visibility = ["//visibility:public"],
+)
